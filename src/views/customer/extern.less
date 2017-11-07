@@ -1,0 +1,104 @@
+.extern{
+    &-main-con{
+        left: 10px;
+        top: 100px;
+        right: 0px;
+        bottom: 0px;
+    }
+    &-content-con{
+        top: 10px;
+        right: 10px;
+        bottom: 10px;
+        background: white;
+        border-radius: 3px;
+        box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, .1);
+        overflow: auto;
+        .extern-content-card-title{
+            height: auto;
+            right: 0
+        }
+        .extern-title-list-con{
+            width: 100%;
+            height: 100%;
+        }
+        .extern-content-top-bar{
+            height: 40px;
+            width: 100%;
+            background: white;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-bottom: 1px solid #dededb;
+            .mes-back-btn-con{
+                position: absolute;
+                width: 70px;
+                height: 30px;
+                left: 0;
+                top: 5px;
+            }
+            .mes-title{
+                position: absolute;
+                top: 0;
+                right: 70px;
+                bottom: 0;
+                left: 70px;
+                line-height: 40px;
+                padding: 0 30px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: center;
+            }
+        }
+        .mes-time-con{
+            position: absolute;
+            width: 100%;
+            top: 40px;
+            left: 0;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #b7b7b5;
+        }
+        .extern-content-body{
+            position: absolute;
+            top: 90px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: auto;
+            .extern-content{
+                padding: 10px 20px;
+            }
+        }
+    }
+}
+.back-extern-list-enter, .back-extern-list-leave-to{
+    transform: translateX(100%);
+}
+.back-extern-list-enter-active, .back-extern-list-leave-active{
+    transition: transform .5s;
+}
+.back-extern-list-enter-to, .back-extern-list-leave{
+    transform: translateX(0);
+}
+.view-extern-enter, .view-extern-leave-to{
+    transform: translateX(-100%);
+}
+.view-extern-enter-active, .view-extern-leave-active{
+    transition: transform .5s;
+}
+.view-extern-enter-to, .view-extern-leave{
+    transform: translateX(0);
+}
+.mes-current-type-btn-enter, .mes-current-type-btn-leave-to{
+    opacity: 0;
+    width: 0;
+}
+.mes-current-type-btn-enter-active, .mes-current-type-btn-leave-active{
+    transition: all .3s;
+}
+.mes-current-type-btn-enter-to, .mes-current-type-btn-leave{
+    opacity: 1;
+    width: 12px;
+}

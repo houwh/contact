@@ -1,269 +1,138 @@
-import api from '../api'
-import router from '../router'
+import api from '../api/api'
+import Cookies from 'js-cookie';
+import * as types from './mutation-types'
 
-export default {
-    //  后台登录
-    UserLogin({
-        commit
-    }, data) {
+// let actions = {};
 
-        return new Promise((resovle, reject) => {
-            api.localLogin(data).then(({
-                data
-            }) => {
-         		console.log(data)
-                if (data.doc) {
-                    // 找到代理商
-                  commit('USER_SIGNIN',data);
-                  let obj = JSON.stringify(data.doc);
-                  localStorage.setItem('userObj', obj);
-                    router.replace({
-                        path: '/customer'
-                    })
-                  	resovle(data);
-                } else {
-                		console.log("cw")
-                    // 没找到用户或者密码不对
-                    // MsgAlert(data.message)
-                    // console.log(error);
-                }
-            }).catch(error => {
-                reject(error);
-            })
+// 客户模块
+export const UserLogin = ({
+    commit
+}, {
+    params,
+    $router
+}) => {
+    return new Promise((resolve, reject) => {
+        api.USERLOGIN(params).then(data => {
+            if (data.status == 200) {
+                Cookies.set('user', data.data.doc.userRealName);
+                Cookies.set('token', data.data.token);
+                commit(types.USER_LOGIN, data);
+                $router.push({
+                    name: 'home_index'
+                });
+                resolve(data);
+            }
+        }).catch(err => {
+            return reject(err);
         });
-    },
-    UserLogout({
-        commit
-    }) {
-        commit('USER_SIGNOUT');
-        router.push({
-            path: '/login'
-        });
-    },
+    });
+};
 
-    /************ Agent Customer Action ************/
-    //客户添加
-    addDepartmentCustomer({
-        commit
-    }, data) {
-        console.log(data)
-        return new Promise((resolve, reject) => {
-            api.addCustomer(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    GetDepartmentCustomerById({
-        commit
-    }, data) {
-        return new Promise((resolve, reject) => {
-            api.getCustomerById(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    //删除客户
-    DeleteCustomer({
-        commit
-    }, data) {
-        // console.log(data)
-        return new Promise((resolve, reject) => {
-            api.deleteCustomer(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    //客户管理编辑保存
-    editDepartmentCustomer({
-        commit,
-        getters
-    }, data) {
-        console.log(data,"editDepartmentCustomer")
-        return new Promise((resolve, reject) => {
-            api.editCustomer(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    //客户冻结
-    FreezeCustomer({
-        commit
-    }, data) {
-        return new Promise((resolve, reject) => {
-            api.freezeCustomer(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    //客户解冻
-    DeFreezeCustomer({
-        commit
-    }, data) {
-        return new Promise((resolve, reject) => {
-            api.deFreezeCustomer(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    /************ Agent Customer Action ************/
+export const setAvator = ({
+    commit
+}, params) => {
+    commit(types.SETAVATOR, params);
+};
 
-    /************ Agent Employee Action ************/
-    //添加员工
-    AddDepartmentEmployee({
-        commit
-    }, data) {
-        console.log(data)
-        return new Promise((resolve, reject) => {
-            api.addEmployee(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
 
-    GetDepartmentEmployeeById({
-        commit
-    }, data) {
-        return new Promise((resolve, reject) => {
-            api.getEmployeeById(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    EditDepartmentEmployee({
-        commit,
-        getters
-    }, data) {
-        console.log(data)
-        return new Promise((resolve, reject) => {
-            api.editEmployee(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    DeleteEmployee({
-        commit
-    }, data) {
-        return new Promise((resolve, reject) => {
-            api.deleteEmployee(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    FreezeEmployee({
-        commit
-    }, data) {
-        return new Promise((resolve, reject) => {
-            api.freezeEmployee(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    DeFreezeEmployee({
-        commit
-    }, data) {
-        return new Promise((resolve, reject) => {
-            api.deFreezeEmployee(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    //修改密码
-    ChangePassword({
-        commit
-    }, data) {
-        return new Promise((resolve, reject) => {
-            api.changePassword(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    /************ Agent Employee Action ************/
+export const setCurrentPageName = ({
+    commit
+}, params) => {
+    commit(types.SETCURRENTPAGENAME, params);
+};
 
-    /************ Agent Department API ************/
+export const addOpenSubmenu = ({
+    commit
+}, params) => {
+    commit(types.ADDOPENSUBMENU, params);
+};
 
-    //部门管理添加
-    AddDepartment({
-        commit
-    }, data) {
-         console.log(data)
-        return new Promise((resolve, reject) => {
-            api.addDepartment(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
+export const clearOpenedSubmenu = ({
+    commit
+}) => {
+    commit(types.CLEAROPENEDSUBMENU);
+};
 
-    UpdateDepartment({
-        commit
-    }, data) {
-        console.log(data)
-        return new Promise((resolve, reject) => {
-            api.updateDepartment(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
-    //部门删除
-    DeleteDepartment({
-        commit
-    }, data) {
-        return new Promise((resolve, reject) => {
-            api.deleteDepartment(data)
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-        });
-    },
+export const lock = ({
+    commit
+}) => {
+    commit(types.LOCK);
+};
 
-    /************ Agent Department API ************/
+export const changeMenuTheme = ({
+    commit
+}, params) => {
+    commit(types.CHANGEMENUTHEME, params);
+};
 
-    /************ Agent License API ************/
+export const changeMainTheme = ({
+    commit
+}, params) => {
+    commit(types.CHANGEMAINTHEME, params);
+};
 
-    AddLicense({
-        commit
-    }, data) {
-        return new Promise((resovle, reject) => {
-            api.addLicense(data)
-                .then(response => resovle(response))
-                .catch(error => reject(error));
-        });
-    },
+export const setOpenedList = ({
+    commit
+}) => {
+    commit(types.SETOPENEDLIST);
+};
 
-    GetLicenseByCustomer({
-        commit
-    }, data) {
-        return new Promise((resovle, reject) => {
-            api.getLicenseByCustomer(data)
-                .then(response => resovle(response))
-                .catch(error => reject(error));
-        });
-    },
+export const initCachepage = ({
+    commit
+}) => {
+    commit(types.INITCACHEPAGE);
+};
 
-    /************ Agent License API ************/
+export const updateMenulist = ({
+    commit
+}) => {
+    commit(types.UPDATEMENULIST);
+};
 
-    /************ Agent role API ************/
-    //添加角色
-    RoleAdd({commit},data){
-        return new  Promise((resovle,reject)=>{
-            api.RoleAdd(data)
-                .then(response => resovle(response))
-                .catch(error => reject(error))
-        })
-    },
-    //编辑角色
-    RoleEdit({commit},data){
-        //console.log(data.systemPermissionId[0],data)
-        return new Promise((resovle,reject)=>{
-            api.RoleEdit(data)
-                .then(response => resovle(response))
-                .catch(error => reject(error));
-        })
-    },
-    //删除角色
-    delRole({commit},data){
-        return new Promise((resovle,reject)=>{
-            api.delRole(data)
-                .then(response => resovle(response))
-                .catch(error => reject(error))
-        })
-    }
-}
+export const setTagsList = ({
+    commit
+}, params) => {
+    commit(types.SETTAGSLIST, params);
+};
+
+export const setCurrentPath = ({
+    commit
+}, params) => {
+    commit(types.SETCURRENTPATH, params);
+};
+
+export const pageOpenedList = ({
+    commit
+}, params) => {
+    commit(types.PAGEOPENEDLIST, params);
+};
+
+export const increateTag = ({
+    commit
+}, params) => {
+    commit(types.INCREATETAG, params);
+};
+
+export const removeTag = ({
+    commit
+}, params) => {
+    commit(types.REMOVETAG, params);
+};
+
+export const clearAllTags = ({
+    commit
+}) => {
+    commit(types.CLEARALLTAGS);
+};
+
+export const clearOtherTags = ({
+    commit
+}, params) => {
+    commit(types.CLEAROTHERTAGS, params);
+};
+
+export const unlock = ({
+    commit
+}) => {
+    commit(types.UNLOCK);
+};
