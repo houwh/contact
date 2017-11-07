@@ -5,6 +5,7 @@ var a = 0 ;
 var srr = [
   {text:'111111'}
 ]
+var master = []
 
 
 exports.assetsPath1git1 = function (_path) {
