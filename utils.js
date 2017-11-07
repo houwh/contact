@@ -2,8 +2,7 @@ var path = require('path')
 var config = require('../config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var a = 0 ;
-var b = 0 ;
-var c = 0 ;
+
 
 exports.assetsPath1git1 = function (_path) {
   var assetsSubDirectory = process.env.NODE_ENV === 'production'
