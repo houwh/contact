@@ -2,6 +2,9 @@ var path = require('path')
 var config = require('../config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var a = 0 ;
+var srr = [
+  {text:'1'}
+]
 
 
 exports.assetsPath1git1 = function (_path) {
