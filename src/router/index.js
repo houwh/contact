@@ -1,177 +1,103 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 import Router from 'vue-router';
 import store from '../store/index'
-import {getToken} from '../utils/auth'
-import {mapActions} from 'vuex'
 
 Vue.use(Router);
+Vue.use(Vuex);
 
-const router = new Router({
+
+const router =  new Router({
     routes: [{
-        path: '/',
-        redirect: '/login'
-    },
+            path: '/',
+            redirect: '/login'
+        },
         {
             path: '/index',
             component: resolve => require(['../components/common/Home.vue'], resolve),
             children: [{
-                path: '/',
-                component: resolve => require(['../components/page/index.vue'], resolve)
-            },
+                    path: '/',
+                    component: resolve => require(['../components/page/index.vue'], resolve)
+                },
                 {
                     path: '/customer',
-                    meta: {
-                        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
-                    },
-                    component: resolve => require(['../components/page/customer/customer.vue'], resolve)
+                    component: resolve => require(['../components/page/customer/customer.vue'], resolve),
+                    meta: {requiresAuth: true}
                 },
                 {
-                    path: '/customerAdd',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/customer/customerAdd.vue'], resolve)
+                    path: '/customerAccount',
+                    component: resolve => require(['../components/page/customer/customerAccount.vue'], resolve),
+                    meta: {requiresAuth: true}
                 },
                 {
-                    path: '/customerEdit',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/customer/customerEdit.vue'], resolve)
+                    path: '/customerEdit/:id',
+                    component: resolve => require(['../components/page/customer/customerEdit.vue'], resolve),
+                    meta: {requiresAuth: true}
                 },
                 {
-                    path: '/customerLicense',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/customer/customerLicense.vue'], resolve)
+                    path: '/customerLicense/:id',
+                    component: resolve => require(['../components/page/customer/customerLicense.vue'], resolve),
+                    meta: {requiresAuth: true}
                 },
                 {
-                    path: '/agent',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/agent/agent.vue'], resolve)
+                    path: '/role',
+                    component: resolve => require(['../components/page/globalConfig/role.vue'], resolve),
+                    meta: {requiresAuth: true}
                 },
                 {
-                    path: '/agentAdd',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/agent/agentAdd.vue'], resolve)
-                },
-                {
-                    path: '/agentEdit',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/agent/agentEdit.vue'], resolve)
-                },
-                {
-                    path: '/agentLicense',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/agent/agentLicense.vue'], resolve)
-                },
-                {
-                    path: '/finance',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/finance/finance.vue'], resolve)
-                },
-                {
-                    path: '/financeCheck',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/finance/financeCheck.vue'], resolve)
+                    path: '/department',
+                    component: resolve => require(['../components/page/globalConfig/department.vue'], resolve),
+                    meta: {requiresAuth: true}
                 },
                 {
                     path: '/product',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/product/product.vue'], resolve)
-                },
-                {
-                    path: '/productJurisdiction',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/product/productJurisdiction.vue'],resolve)
-                },
-                {
-                    path:'/productRole',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component:resolve => require(['../components/page/product/productRole'],resolve)
-                },
-                {
-                    path:"/prodBox",
-                    component:resolve => require(['../components/page/product/prodBox'],resolve)
-                },
-                {
-                    path:"/productAdd",
-                    component:resolve => require(['../components/page/product/productAdd'],resolve)
-                },
-                {
-                    path:"/productEdit",
-                    component:resolve => require(['../components/page/product/productEdit'],resolve)
+                    component: resolve => require(['../components/page/product/index.vue'], resolve),
+                    meta: {requiresAuth: true}
                 },
                 {
                     path: '/employee',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/employee/employee.vue'], resolve)
+                    component: resolve => require(['../components/page/employee/employee.vue'], resolve),
+                    meta: {requiresAuth: true}
                 },
                 {
                     path: '/employeeAdd',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/employee/employeeAdd.vue'], resolve)
+                    component: resolve => require(['../components/page/employee/employeeAdd.vue'], resolve),
+                    meta: {requiresAuth: true}
                 },
                 {
-                    path: '/employeeEdit',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/employee/employeeEdit.vue'], resolve)
+                    path: '/employeeEdit/:id',
+                    component: resolve => require(['../components/page/employee/employeeEdit.vue'], resolve),
+                    meta: {requiresAuth: true}
                 },
-                {
-                    path: '/label',
-                    meta:{
-                        requireAuth: true,
-                    },
-                    component: resolve => require(['../components/page/globalConfig/label.vue'], resolve)
-                }
             ]
         },
         {
             path: '/login',
             component: resolve => require(['../components/page/Login.vue'], resolve)
         },
+        {
+            path: '/404',
+            component: resolve => require(['../components/common/404.vue'], resolve),
+            meta: {requiresAuth: true}
+        },
+        {
+            path: '/500',
+            component: resolve => require(['../components/common/500.vue'], resolve),
+            meta: {requiresAuth: true}
+        }
     ]
 })
 
-
-if(getToken("Token")){
-   store.commit("loginTo",{token:getToken("Token")})
-}
-
-
 router.beforeEach((to, from, next) => {
-    if (to.meta.requireAuth) {
-        if (store.state.token) {
+    if (to.meta.requiresAuth) {// 判断该路由是否需要登录权限
+    		console.log("dawdadwad")
+        if (store.state.token) {  // 通过vuex state获取当前的token是否存在
+        		console.log("dawdadwad")
             next();
-        }
-        else {
+        }else{
+        		console.log('dawdwad')
             next({
-                path: '/login'
+                path: '/login',
             })
         }
     }
@@ -179,8 +105,4 @@ router.beforeEach((to, from, next) => {
         next();
     }
 })
-
-
-export default router
-
-
+export default router;

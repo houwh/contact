@@ -1,5 +1,10 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
+var path = require('path');
+
+// const URI = 'http://10.10.11.42:3000/agent';
+const URI = 'http://test.api.v2.wowoniu.com/agent'; //崔
+
+//const URI_LOCAL = 'http://test.api.v2.wowoniu.com/agent';
 
 module.exports = {
     build: {
@@ -28,17 +33,24 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            '/api':{
-                target:'http://jsonplaceholder.typicode.com',
-                changeOrigin:true,
-                pathRewrite:{
-                    '/api':''
+            '/api': {
+                target: URI,
+                changeOrigin: true,
+                pathRewrite: {
+                     '^/api':''
                 }
             },
-            '/ms':{
-                target: 'https://www.easy-mock.com/mock/592501a391470c0ac1fab128',
-                changeOrigin: true
-            }
+            // '/csr': {
+            //     target: URI_LOCAL,
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         '^/csr':''
+            //     }
+            // }
+            // '/ms':{
+            //     target: 'https://www.easy-mock.com/mock/592501a391470c0ac1fab128',
+            //     changeOrigin: true
+            // }
         },
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README

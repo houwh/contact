@@ -1,8 +1,5 @@
 .header{
-    /*background-color: #122b40;*/
-    /*background-color: #EEE;*/
-    /*border-bottom: 1px solid #ccc;*/
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(61,67,76)), to(rgb(45,50,56)));
+    background-color: #242f42;
 }
 .login-wrap{
     background: #324157;

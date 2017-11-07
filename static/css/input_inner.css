@@ -1,0 +1,89 @@
+
+.el-input__inner{ width: 100%;height: 34px;font-size:unset;outline-color:rgb(0,172,141);border-radius: 3px;}
+.el-input__inner:hover{ border-color: rgb(0,172,141); }
+.el-input__inner:focus{ border-color: rgb(0,172,141); }
+.el-radio__input.is-checked .el-radio__inner {
+    border-color: rgb(0,172,141);
+    background: rgb(0,172,141);
+
+}
+.el-textarea__inner:hover{ border-color: rgb(0,172,141); }
+.el-textarea__inner:focus{ border-color: rgb(0,172,141); }
+.el-radio__input .el-radio__inner:hover {
+    border-color: rgb(0,172,141);
+}
+
+
+.el-button--primary{ width:70px;height: 33px;outline-color: rgb(0,172,141); color:#fff;background-color:rgb(0,172,141);border-color: rgb(0,172,141);}
+.el-button--primary:hover{ border-color: rgb(0,172,141);color:rgb(0,172,141);background: rgb(0,172,141);}
+.el-button--primary:hover span{ color:#fff;}
+.el-button--primary:focus{ border-color: rgb(0,172,141);background-color:rgb(0,172,141);}
+
+.el-button--default.el-button--primary{ width:70px;height: 33px;outline-color: rgb(0,172,141); color:#fff;background-color:rgb(0,172,141);border-color: rgb(0,172,141);}
+.el-button--default.el-button--primary:hover span{  color:#fff; }
+
+
+.el-button--default{ width:70px;height: 33px;outline-color: rgb(0,172,141); color:rgb(105,108,110);}
+.el-button--default:hover{ border-color: rgb(0,172,141);color:rgb(0,172,141);}
+.el-button--default:hover span{ color:rgb(0,172,141);}
+.el-button--default:focus{ border-color: rgb(0,172,141);}
+
+.el-button--danger{ width:70px;height: 33px;outline-color:rgb(255, 84, 102); color:#fff;}
+.el-button--danger:hover{ border-color: rgb(255, 84, 102);color:rgb(255, 84, 102);}
+.el-button--danger:hover span{ color:#fff;}
+.el-button--danger:focus{ border-color: rgb(255, 84, 102)}
+
+.el-form-item__label{ color:rgb(116,119,121)}
+.el-cascader__label { color:rgb(116,119,121)}
+
+.el-button--small.el-button--default{ width:unset;height: unset;}
+.el-button--small.el-button--danger{ width:unset;height: unset;}
+.el-select .el-input__inner:hover{ border-color:rgb(0,172,141); }
+.el-select .el-input__inner:focus { border-color:rgb(0,172,141); }
+.el-select-dropdown__item{ color: rgb(158,158,158); }
+.el-select-dropdown__item.selected{ background-color:rgb(0,172,141);}
+
+.el-table__header-wrapper .cell{ color:rgb(102,106,108);}
+.el-table__body-wrapper .cell{ color: #797979; text-align: center;}
+
+.el-message-box__close.el-icon-close:hover{ color:rgb(0,172,141);}
+.el-table th>.cell{ text-align: center; }
+
+
+.el-pager li.active{ border-color:rgb(0,172,141);background-color:rgb(0,172,141); }
+
+.context-cust .el-form-item__content{ margin-left: 0 !important;}
+/*.context-cust .el-dialog--small{ width: 1%;}*/
+.el-card{ border-radius: 0; box-shadow: none; border: none;}
+.el-card__body{ background: rgb(246,246,246);}
+.context-cust .el-card__body{ padding-right: 0px;}
+
+
+
+.role .el-dialog--small{ width:40%; }
+.role .el-input__inner{  }
+
+
+
+.el-button+.el-button{ margin-left:0}
+.jurisd-btn{  position: relative}
+.jurisd-btn>button{display: block; position: absolute; left: 50%;  margin-left: -35px;}
+.jurisd-btn>button:nth-child(2){ top: 50px; margin-left: -35px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
