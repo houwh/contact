@@ -5,9 +5,8 @@ var a = 0 ;
 var srr = [
   {text:'111111'}
 ]
-var master = [1]
 
-var master = [1,2,3,4,5,6,7]
+var master = [1,2,3,4]
 
 exports.assetsPath1git1 = function (_path) {
   var assetsSubDirectory = process.env.NODE_ENV === 'production'
